@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import logo from "../../../../public/images/Group.png";
-import play from "../../../../public/images/play.png";
+import play from "../../../../public/images/Play.png";
 import {
   Play,
   Pause,
