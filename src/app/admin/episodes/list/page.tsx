@@ -5,32 +5,32 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Search, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Play, 
+import {
+  Search,
+  Plus,
+  Edit,
+  Trash2,
+  Play,
   Calendar,
   Clock,
   MoreVertical,
   Filter
 } from 'lucide-react';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { 
-  AlertDialog, 
-  AlertDialogAction, 
-  AlertDialogCancel, 
-  AlertDialogContent, 
-  AlertDialogDescription, 
-  AlertDialogFooter, 
-  AlertDialogHeader, 
-  AlertDialogTitle 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle
 } from '@/components/ui/alert-dialog';
 import { usePlayerStore } from '@/app/store/usePlayerStore';
 import Link from 'next/link';
@@ -67,7 +67,7 @@ export default function ListEpisodes() {
 
   const handleDelete = async () => {
     if (!episodeToDelete) return;
-    
+
     try {
       await deleteEpisode(episodeToDelete);
       toast.success('Episode deleted successfully');
@@ -246,14 +246,14 @@ export default function ListEpisodes() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                       
+
                         <DropdownMenuItem className="cursor-pointer" asChild>
                           <Link href={`/admin/episodes/edit/${episode._id}`}>
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem  className="cursor-pointer"
+                        <DropdownMenuItem className="cursor-pointer"
                           onClick={() => openDeleteDialog(episode._id)}
                         >
                           <Trash2 className="w-4 h-4 mr-2" />
@@ -275,12 +275,13 @@ export default function ListEpisodes() {
                         />
                       </div>
                     )}
-                    
+
                     {/* Episode Info */}
                     <div className="flex flex-wrap gap-2 text-sm text-gray-600">
                       <div className="flex items-center">
                         <Clock className="w-4 h-4 mr-1" />
-                        {formatDuration(episode.duration.toFixed(0))}
+                      {formatDuration(Math.round(Number(episode?.duration ?? 0)))}
+
                       </div>
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-1" />
@@ -288,9 +289,9 @@ export default function ListEpisodes() {
                       </div>
 
                       <div className="flex items-end ml-auto">
-                          <span className="text-blue-600 font-bold mr-1">Guest :</span> {episode.members || 'not show'}
+                        <span className="text-blue-600 font-bold mr-1">Guest :</span> {episode.members || 'not show'}
                       </div>
-                      
+
                     </div>
 
                     {/* Actions */}
@@ -302,10 +303,10 @@ export default function ListEpisodes() {
                             _id: episode._id,
                             title: episode.title,
                             audioUrl: episode.audioUrl,
-                            coverImageUrl: episode.coverImageUrl ,
+                            coverImageUrl: episode.coverImageUrl,
                             podcastTitle: episode.title,
                           }, episodes)
-                        } 
+                        }
                         className="flex-1  cursor-pointer"
                       >
                         <Play className="w-4 h-4 mr-2" />
@@ -331,8 +332,8 @@ export default function ListEpisodes() {
 
           {/* Pagination */}
           {renderPagination()}
-        <PlayerBar />
-          
+          <PlayerBar />
+
         </>
       )}
 

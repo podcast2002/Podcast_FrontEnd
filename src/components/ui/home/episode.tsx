@@ -35,7 +35,7 @@ function Todo() {
     return <p className="text-center mt-8">No episodes found</p>;
 
   const latestEpisodes = [...episodes]
-    .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+   .sort((a, b) => new Date(b.releaseDate ?? 0).getTime() - new Date(a.releaseDate ?? 0).getTime())
     .slice(0, 2);
 
   const formatDuration = (seconds: any) => {

@@ -1,19 +1,26 @@
-import eslintPluginPrettier from 'eslint-plugin-prettier';
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import nextPlugin from "@next/eslint-plugin-next";
 
 export default [
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    ignores: ["node_modules", "dist", ".next"],
+  },
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: 'module',
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
     plugins: {
-      prettier: eslintPluginPrettier,
+      "@typescript-eslint": tseslint,
+      next: nextPlugin,
     },
     rules: {
-      'prettier/prettier': 'warn',
-      'no-unused-vars': 'warn',
-      'no-console': 'off',
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "react/react-in-jsx-scope": "off",
     },
   },
 ];
